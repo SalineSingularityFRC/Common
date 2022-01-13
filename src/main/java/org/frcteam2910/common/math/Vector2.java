@@ -1,12 +1,12 @@
-package org.frcteam2910.common.math;
+package org.frcteam5066.common.math;
 
-import org.frcteam2910.common.util.Interpolable;
+import org.frcteam5066.common.util.Interpolable;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-import static org.frcteam2910.common.math.MathUtils.epsilonEquals;
+import static org.frcteam5066.common.math.MathUtils.epsilonEquals;
 
 /**
  * A vector representing a point in 2d space.

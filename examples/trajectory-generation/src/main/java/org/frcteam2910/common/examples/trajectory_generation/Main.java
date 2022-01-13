@@ -1,10 +1,10 @@
-package org.frcteam2910.common.examples.trajectory_generation;
+package org.frcteam5066.common.examples.trajectory_generation;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
-import org.frcteam2910.common.control.*;
-import org.frcteam2910.common.math.Rotation2;
-import org.frcteam2910.common.math.Vector2;
+import org.frcteam5066.common.control.*;
+import org.frcteam5066.common.math.Rotation2;
+import org.frcteam5066.common.math.Vector2;
 
 import java.io.FileWriter;
 import java.io.IOException;

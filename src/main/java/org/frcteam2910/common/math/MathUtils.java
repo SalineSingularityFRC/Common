@@ -1,4 +1,4 @@
-package org.frcteam2910.common.math;
+package org.frcteam5066.common.math;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.max;

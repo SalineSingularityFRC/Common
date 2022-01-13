@@ -1,6 +1,6 @@
-package org.frcteam2910.common.util;
+package org.frcteam5066.common.util;
 
-import org.frcteam2910.common.math.Vector2;
+import org.frcteam5066.common.math.Vector2;
 
 public class HolonomicDriveSignal {
     private final Vector2 translation;

@@ -1,7 +1,7 @@
-package org.frcteam2910.common.io.json;
+package org.frcteam5066.common.io.json;
 
 import com.google.gson.*;
-import org.frcteam2910.common.util.InterpolatingDouble;
+import org.frcteam5066.common.util.InterpolatingDouble;
 
 import java.lang.reflect.Type;
 

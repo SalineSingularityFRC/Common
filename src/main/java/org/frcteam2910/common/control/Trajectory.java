@@ -1,6 +1,6 @@
-package org.frcteam2910.common.control;
+package org.frcteam5066.common.control;
 
-import org.frcteam2910.common.math.MathUtils;
+import org.frcteam5066.common.math.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;

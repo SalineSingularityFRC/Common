@@ -1,7 +1,7 @@
-package org.frcteam2910.common.drivers;
+package org.frcteam5066.common.drivers;
 
-import org.frcteam2910.common.math.Rotation2;
-import org.frcteam2910.common.math.Vector2;
+import org.frcteam5066.common.math.Rotation2;
+import org.frcteam5066.common.math.Vector2;
 
 public abstract class SwerveModule {
     private final Vector2 modulePosition;
