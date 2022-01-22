@@ -10,8 +10,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
+
 import org.frcteam5066.common.control.PidConstants;
 import org.frcteam5066.common.control.PidController;
 import org.frcteam5066.common.drivers.SwerveModule;

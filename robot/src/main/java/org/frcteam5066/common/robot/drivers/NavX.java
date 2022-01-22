@@ -1,7 +1,10 @@
 package org.frcteam5066.common.robot.drivers;
 
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import org.frcteam5066.common.drivers.Gyroscope;
 import org.frcteam5066.common.math.Rotation2;
 

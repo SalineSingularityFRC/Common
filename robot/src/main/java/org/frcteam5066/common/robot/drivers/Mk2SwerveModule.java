@@ -5,7 +5,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import org.frcteam5066.common.control.PidConstants;
 import org.frcteam5066.common.control.PidController;
 import org.frcteam5066.common.drivers.SwerveModule;
@@ -78,7 +78,7 @@ public class Mk2SwerveModule extends SwerveModule {
         this.steeringMotor = angleMotor;
         this.angleEncoder = angleEncoder;
         this.driveMotor = driveMotor;
-        this.driveEncoder = new CANEncoder(driveMotor);
+        this.driveEncoder = driveMotor.getEncoder();
 
         driveMotor.setSmartCurrentLimit(60);
 
