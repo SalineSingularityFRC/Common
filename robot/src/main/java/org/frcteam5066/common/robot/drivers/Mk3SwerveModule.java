@@ -288,4 +288,15 @@ public class Mk3SwerveModule extends SwerveModule {
         ret.targetAngle = targetAngle;
         return ret;
     }
+
+    public double getRotationsSpun(){
+        //2048 motor spin units per 1 motor rotation, 8.16 motor rotations per 1 wheel rotation
+        return ( driveMotor.getSelectedSensorPosition() / 2048.0 ) / 8.16;
+    }
+
+    public void resetRotationsZero(){
+        driveMotor.setSelectedSensorPosition(0.0);
+    }
+    
+
 }
