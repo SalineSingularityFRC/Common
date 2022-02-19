@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.frcteam5066.common.Logger;
 import org.frcteam5066.common.math.MathUtils;
@@ -52,6 +53,7 @@ public final class HolonomicDriveCommand extends Command {
 
 			@Override
 			public double pidGet() {
+				
 				return drivetrain.getGyroscope().getAngle().toDegrees();
 			}
 
