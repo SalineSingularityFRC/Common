@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 import org.frcteam5066.common.math.MathUtils;
 import org.frcteam5066.common.robot.input.Axis;
-import org.frcteam5066.common.robot.input.NullButton;
 import org.frcteam5066.common.robot.subsystems.ShiftingTankDrivetrain;
 import org.frcteam5066.common.robot.subsystems.TankDrivetrain;
 
