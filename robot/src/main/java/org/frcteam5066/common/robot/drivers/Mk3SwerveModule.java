@@ -7,6 +7,8 @@ import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 import edu.wpi.first.wpilibj.Notifier;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.frcteam5066.common.drivers.SwerveModule;
 import org.frcteam5066.common.math.Vector2;
 
@@ -230,6 +232,7 @@ public class Mk3SwerveModule extends SwerveModule {
     protected void setDriveOutput(double output) {
         synchronized (canLock) {
             this.drivePercentOutput = Optional.of(output);
+            SmartDashboard.putNumber(Integer.toString(this.driveMotor.getDeviceID()), output);
         }
     }
 
