@@ -1,5 +1,6 @@
 package org.frcteam5066.common.robot.drivers;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StickyFaults;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
@@ -143,6 +144,7 @@ public class Mk3SwerveModule extends SwerveModule {
         this.steeringMotor = angleMotor;
         this.angleEncoder = angleEncoder;
         this.driveMotor = driveMotor;
+        
         this.driveCountsPerInch = (TALONFX_COUNTS_PER_REVOLUTION * driveGearRatio) / (Math.PI * WHEEL_DIAMETER_INCHES);
         this.steerCountsPerDegree = (TALONFX_COUNTS_PER_REVOLUTION * angleGearRatio) / 360;
         this.driveMotorDefaultInvertState = driveMotor.getInverted();
@@ -169,6 +171,7 @@ public class Mk3SwerveModule extends SwerveModule {
         steeringMotor.configPeakOutputReverse(-MAX_STEERING_SPEED, Constants.CAN_TIMEOUT_MS);
 
         canUpdateNotifier.startPeriodic(1.0 / CAN_UPDATE_RATE);
+        driveMotor.setNeutralMode(NeutralMode.Brake);
     }
 
     public void resetAngleOffsetWithAbsoluteEncoder() {
