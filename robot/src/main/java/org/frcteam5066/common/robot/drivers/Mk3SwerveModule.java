@@ -48,12 +48,12 @@ public class Mk3SwerveModule extends SwerveModule {
      * All CAN operations are done in a separate thread to reduce latency on the control thread
      */
     private Notifier canUpdateNotifier = new Notifier(() -> {
-        double unadjustedDriveCounts = driveMotor.getSelectedSensorPosition(); // TODO Verify
+        double unadjustedDriveCounts = driveMotor.getSelectedSensorPosition(); // Todo Verify
         synchronized (canLock) {
             this.driveDistance = unadjustedDriveCounts * (1.0 / driveCountsPerInch);
         }
 
-        double driveRpm = driveMotor.getSelectedSensorVelocity(); // TODO Verify
+        double driveRpm = driveMotor.getSelectedSensorVelocity(); // Todo Verify
         synchronized (canLock) {
             this.driveVelocity = driveRpm * (1.0 / 60.0) * (1.0 / driveCountsPerInch);
         }
@@ -159,6 +159,7 @@ public class Mk3SwerveModule extends SwerveModule {
         // Wipe configuration
         steeringMotor.configFactoryDefault();
         steeringMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, TALONFX_PID_LOOP_NUMBER, Constants.CAN_TIMEOUT_MS);
+            //TODO change feedback sensor to cancoder
         // Make the integrated encoder count forever (don't wrap), since it doesn't work properly with continuous mode
         // We account for this manually (unfortunately)
         steeringMotor.configFeedbackNotContinuous(true, Constants.CAN_TIMEOUT_MS);
