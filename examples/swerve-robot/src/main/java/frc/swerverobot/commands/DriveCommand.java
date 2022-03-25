@@ -26,6 +26,7 @@ public class DriveCommand extends CommandBase {
 
     @Override
     public void execute() {
+        SmartDashboard.putNumber("rotation.getAsDouble", rotation.getAsDouble());
         drivetrain.drive(
                 new Vector2(
                         forward.getAsDouble(),

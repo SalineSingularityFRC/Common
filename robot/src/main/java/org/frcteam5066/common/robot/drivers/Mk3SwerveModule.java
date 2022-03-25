@@ -170,6 +170,7 @@ public class Mk3SwerveModule extends SwerveModule {
         // Limit steering module speed
         steeringMotor.configPeakOutputForward(MAX_STEERING_SPEED, Constants.CAN_TIMEOUT_MS);
         steeringMotor.configPeakOutputReverse(-MAX_STEERING_SPEED, Constants.CAN_TIMEOUT_MS);
+        steeringMotor.setNeutralMode(NeutralMode.Brake);
 
         canUpdateNotifier.startPeriodic(1.0 / CAN_UPDATE_RATE);
         driveMotor.setNeutralMode(NeutralMode.Brake);
