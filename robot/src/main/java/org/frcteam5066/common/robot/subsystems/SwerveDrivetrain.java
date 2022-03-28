@@ -110,11 +110,11 @@ public abstract class SwerveDrivetrain extends HolonomicDrivetrain {
     public void outputToSmartDashboard() {
         super.outputToSmartDashboard();
         for (SwerveModule module : getSwerveModules()) {
-            SmartDashboard.putNumber(String.format("%s module angle", module.getName()), Math.toDegrees(module.getCurrentAngle()));
-            SmartDashboard.putNumber(String.format("%s module drive distance", module.getName()), module.getCurrentDistance());
-            SmartDashboard.putString(String.format("%s module position", module.getName()), module.getCurrentPosition().toString());
-            SmartDashboard.putNumber(String.format("%s module velocity", module.getName()), module.getCurrentVelocity());
-            SmartDashboard.putNumber(String.format("%s module drive current", module.getName()), module.getDriveCurrent() + Math.random() * MathUtils.EPSILON);
+            //SmartDashboard.putNumber(String.format("%s module angle", module.getName()), Math.toDegrees(module.getCurrentAngle()));
+            //SmartDashboard.putNumber(String.format("%s module drive distance", module.getName()), module.getCurrentDistance());
+            //SmartDashboard.putString(String.format("%s module position", module.getName()), module.getCurrentPosition().toString());
+            //SmartDashboard.putNumber(String.format("%s module velocity", module.getName()), module.getCurrentVelocity());
+            //SmartDashboard.putNumber(String.format("%s module drive current", module.getName()), module.getDriveCurrent() + Math.random() * MathUtils.EPSILON);
         }
     }
 }

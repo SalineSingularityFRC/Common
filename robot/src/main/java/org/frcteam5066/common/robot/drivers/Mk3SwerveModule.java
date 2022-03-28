@@ -69,6 +69,7 @@ public class Mk3SwerveModule extends SwerveModule {
         }
         if (drivePercentOutput.isPresent()) {
             this.driveMotor.set(TalonFXControlMode.Position.PercentOutput, drivePercentOutput.get());
+            //SmartDashboard.putNumber(Integer.toString(driveMotor.getDeviceID()) + " SET" , drivePercentOutput.get());
         }
 
         StickyFaults faults = new StickyFaults();
@@ -151,7 +152,7 @@ public class Mk3SwerveModule extends SwerveModule {
         this.resetAngleOffsetWithAbsoluteEncoder();
 
         SupplyCurrentLimitConfiguration config = new SupplyCurrentLimitConfiguration();
-        config.currentLimit = 60;
+        config.currentLimit = 100;
         config.enable = true;
 
         driveMotor.configSupplyCurrentLimit(config);
@@ -237,7 +238,8 @@ public class Mk3SwerveModule extends SwerveModule {
     protected void setDriveOutput(double output) {
         synchronized (canLock) {
             this.drivePercentOutput = Optional.of(output);
-            SmartDashboard.putNumber(Integer.toString(this.driveMotor.getDeviceID()), output);
+            //SmartDashboard.putNumber(Integer.toString(this.driveMotor.getDeviceID()), output);
+            //SmartDashboard.putNumber(Integer.toString(this.driveMotor.getDeviceID()) + " Actual Output", this.driveMotor.getMotorOutputPercent());
         }
     }
 
