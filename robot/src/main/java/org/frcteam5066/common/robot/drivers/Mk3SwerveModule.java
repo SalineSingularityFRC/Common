@@ -7,6 +7,8 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.SensorInitializationStrategy;
+
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -126,6 +128,11 @@ public class Mk3SwerveModule extends SwerveModule {
 
             // And set the values
             double targetPosCalculated = steeringConfig.targetAngle * this.steerCountsPerDegree;
+
+            //SmartDashboard.putNumber(this.steeringMotor.getDeviceID() + " STEERING UNADJUSTED", unadjustedSteeringAngle);
+            //SmartDashboard.putNumber(this.steeringMotor.getDeviceID() + " STEERING CURRENT", currentWheelAngle);
+            //SmartDashboard.putNumber(this.steeringMotor.getDeviceID() + " STEERING TARGET", targetAngle);
+            //SmartDashboard.putNumber(this.steeringMotor.getDeviceID() + " STEERING TARGET CALC", targetPosCalculated);
             this.steeringMotor.set(TalonFXControlMode.Position, targetPosCalculated);
             this.driveMotor.setInverted(steeringConfig.invertMotor ^ this.driveMotorDefaultInvertState);
         }
@@ -147,7 +154,8 @@ public class Mk3SwerveModule extends SwerveModule {
         this.driveMotor = driveMotor;
         
         this.driveCountsPerInch = (TALONFX_COUNTS_PER_REVOLUTION * driveGearRatio) / (Math.PI * WHEEL_DIAMETER_INCHES);
-        this.steerCountsPerDegree = (TALONFX_COUNTS_PER_REVOLUTION * angleGearRatio) / 360;
+        //this.steerCountsPerDegree = (TALONFX_COUNTS_PER_REVOLUTION * angleGearRatio) / 360;
+        this.steerCountsPerDegree = 4096 / 360.0;
         this.driveMotorDefaultInvertState = driveMotor.getInverted();
         this.resetAngleOffsetWithAbsoluteEncoder();
 
@@ -159,13 +167,14 @@ public class Mk3SwerveModule extends SwerveModule {
 
         // Wipe configuration
         steeringMotor.configFactoryDefault();
-        steeringMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, TALONFX_PID_LOOP_NUMBER, Constants.CAN_TIMEOUT_MS);
+        steeringMotor.configRemoteFeedbackFilter(angleEncoder, 0);
+        steeringMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.RemoteSensor0, TALONFX_PID_LOOP_NUMBER, Constants.CAN_TIMEOUT_MS);
             //TODO change feedback sensor to cancoder
         // Make the integrated encoder count forever (don't wrap), since it doesn't work properly with continuous mode
         // We account for this manually (unfortunately)
         steeringMotor.configFeedbackNotContinuous(true, Constants.CAN_TIMEOUT_MS);
         // Configure PID values
-        steeringMotor.config_kP(TALONFX_PID_LOOP_NUMBER, 0.3, Constants.CAN_TIMEOUT_MS);
+        steeringMotor.config_kP(TALONFX_PID_LOOP_NUMBER, 0.3 * 6.4, Constants.CAN_TIMEOUT_MS);
         steeringMotor.config_kI(TALONFX_PID_LOOP_NUMBER, 0.0, Constants.CAN_TIMEOUT_MS);
         steeringMotor.config_kD(TALONFX_PID_LOOP_NUMBER, 0.0, Constants.CAN_TIMEOUT_MS);
         // Limit steering module speed
@@ -174,20 +183,24 @@ public class Mk3SwerveModule extends SwerveModule {
         steeringMotor.setNeutralMode(NeutralMode.Brake);
 
         canUpdateNotifier.startPeriodic(1.0 / CAN_UPDATE_RATE);
+        angleEncoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
         driveMotor.setNeutralMode(NeutralMode.Brake);
+
+        this.moduleAngleToAdd = -Math.toDegrees(angleOffset);
+                            
     }
 
     public void resetAngleOffsetWithAbsoluteEncoder() {
         // Absolute position is reported in degrees
         // Not running this on CAN thread since we only poll this when necessary, so
         // losing a few ms of main loop to reduce CAN bas usage is worth it
-        double offsetInDegrees = angleEncoder.getAbsolutePosition() - absoluteEncoderAngleOffset;
+        /*double offsetInDegrees = angleEncoder.getAbsolutePosition() - absoluteEncoderAngleOffset;
         if (offsetInDegrees < 0) {
             offsetInDegrees += 360;
         }
         synchronized (canLock) {
             this.angleToResetSteeringTo = Optional.of(offsetInDegrees);
-        }
+        }*/
     }
 
     @Override
